@@ -54,8 +54,7 @@ def build_pdf_report(dataframe):
     doc = SimpleDocTemplate(buffer, pagesize=letter, rightMargin=30, leftMargin=30, topMargin=30, bottomMargin=30)
     styles = getSampleStyleSheet()
     
-    # Custom Internal Styles
-    title_style = ParagraphStyle('TitleStyle', parent=styles['Heading1'], fontSize=22, textColor=colors.HexColor('#0284c7'), spaceAfter=15)
+    title_style = ParagraphStyle('TitleStyle', parent=styles['Heading1'], fontSize=18, textColor=colors.HexColor('#0284c7'), spaceAfter=15)
     body_style = ParagraphStyle('BodyStyle', parent=styles['Normal'], fontSize=10, textColor=colors.HexColor('#334155'), spaceAfter=10)
     
     story = [
@@ -64,7 +63,6 @@ def build_pdf_report(dataframe):
         Spacer(1, 15)
     ]
     
-    # Process Table Dimensions Data Safely
     data = [dataframe.columns.tolist()] + dataframe.values.tolist()
     t = Table(data)
     t.setStyle(TableStyle([
@@ -85,7 +83,6 @@ def build_pdf_report(dataframe):
 if panel == "📈 Tactical Overview":
     st.title("📈 Performance Index & Global Database")
     
-    # Dynamic Metric Strips
     m1, m2, m3, m4 = st.columns(4)
     with m1: st.markdown('<div class="metric-card"><h4>Win Ratio</h4><h2 style="color:#22c55e;">75.0%</h2><p>Last 4 Scrimmages</p></div>', unsafe_allow_html=True)
     with m2: st.markdown('<div class="metric-card"><h4>Meta Dominance</h4><h2 style="color:#38bdf8;">S-Tier Focus</h2><p>High Priority Picks</p></div>', unsafe_allow_html=True)
@@ -94,7 +91,9 @@ if panel == "📈 Tactical Overview":
     
     st.markdown("---")
     st.subheader("🌐 Global Roster Tracker")
-    role_sel = st.segmented_control("Lane Focus Assignment:", ["All Routes", "Jungle", "Mid Lane", "Farm Lane", "Clash Lane", "Roamer"])
+    
+    role_options = ["All Routes", "Jungle", "Mid Lane", "Farm Lane", "Clash Lane", "Roamer"]
+    role_sel = st.selectbox("Select Lane Focus Assignment:", role_options)
     
     target_role = role_sel if role_sel != "All Routes" else None
     display_df = heroes_pool if not target_role else heroes_pool[heroes_pool["Role"] == target_role]
@@ -103,7 +102,6 @@ if panel == "📈 Tactical Overview":
     for idx, row in display_df.reset_index().iterrows():
         with cols[idx % 4]:
             st.markdown(f'<div class="hero-card">', unsafe_allow_html=True)
-            # Safe unique automated portrait fallback engine vector
             st.image(f"https://api.dicebear.com/7.x/identicon/svg?seed={row['Seed']}", width=65)
             tier_css = "tier-s" if row["Meta_Tier"] == "S" else "tier-a"
             st.markdown(f"<h3>{row['Hero']}</h3>", unsafe_allow_html=True)
@@ -116,7 +114,6 @@ if panel == "📈 Tactical Overview":
 # ==========================================
 elif panel == "🎯 Draft Board Studio":
     st.title("🎯 Live Draft & Ban Strategy Suite")
-    st.write("Simulate or register live draft dependencies to discover match advantage coefficients.")
     
     col1, col2 = st.columns([1, 2])
     
@@ -134,7 +131,7 @@ elif panel == "🎯 Draft Board Studio":
         
     with col2:
         st.subheader("Visualized Pick vs Ban Metrics")
-        chart_type = st.toggle("Switch Chart View (Scatter vs Bar)", value=True)
+        chart_type = st.checkbox("Toggle Chart View (Checked = Bar, Unchecked = Scatter)", value=True)
         
         if chart_type:
             fig = px.bar(heroes_pool, x="Hero", y=["Win_Rate", "Ban_Rate"], barmode="group",
@@ -152,7 +149,6 @@ elif panel == "🎯 Draft Board Studio":
 # ==========================================
 elif panel == "📊 Radar Analytics":
     st.title("📊 Interactive Driver Radar Matrix")
-    st.write("Tune player core attributes live using interactive controllers to run simulation benchmarks.")
     
     rc1, rc2 = st.columns([1, 2])
     
@@ -165,10 +161,9 @@ elif panel == "📊 Radar Analytics":
         tank_val = st.slider("Damage Absorbed %", 5, 50, 18)
         
     with rc2:
-        # Scale variables uniformly for clean dynamic rendering mapping
         stats_labels = ['KDA Ratio', 'Gold/Min Index', 'Kill Part. %', 'Damage Share %', 'Absorbed Dmg %']
         our_values = [kda_val * 10, (gpm_val/10), kp_val, dmg_val * 2, tank_val * 2]
-        baseline_values = [50, 70, 65, 50, 40] # Pro Projections Benchmark Template
+        baseline_values = [50, 70, 65, 50, 40] 
         
         fig = go.Figure()
         fig.add_trace(go.Scatterpolar(r=our_values, theta=stats_labels, fill='toself', name='Simulated Subject Profile', fillcolor='rgba(56, 189, 248, 0.3)', line=dict(color='#38bdf8')))
@@ -183,7 +178,6 @@ elif panel == "📊 Radar Analytics":
 elif panel == "🗃️ Scrim Log Engine":
     st.title("🗃️ Interactive Scrimmage Log Registry")
     
-    # Form Interface for Real-Time Writing Input
     with st.expander("➕ Register Brand New Scrimmage Record Entry"):
         with st.form("scrim_form", clear_on_submit=True):
             f_id = st.text_input("Match Reference Code:", "SCRIM_105")
@@ -209,7 +203,6 @@ elif panel == "🗃️ Scrim Log Engine":
     
     col_ex1, col_ex2 = st.columns(2)
     with col_ex1:
-        # Native safe binary conversions for Excel Sheets Engine
         buffer_excel = BytesIO()
         with pd.ExcelWriter(buffer_excel, engine='openpyxl') as writer:
             st.session_state.scrims_db.to_excel(writer, index=False, sheet_name='ScrimRecords')
@@ -224,11 +217,9 @@ elif panel == "🗃️ Scrim Log Engine":
 # ==========================================
 elif panel == "🧠 AI Strategic Mind":
     st.title("🧠 Deep Mind Tactical Coach Generation")
-    st.write("Dynamic heuristic parsing of database logs running performance evaluation telemetry.")
     
     if st.button("Initialize Deep Tactical Evaluation Sequence"):
         with st.spinner("Decoding telemetry, analyzing draft prioritization weights..."):
-            # Programmatic structural parsing algorithms checking session logs
             wins = len(st.session_state.scrims_db[st.session_state.scrims_db["Result"] == "Win"])
             total = len(st.session_state.scrims_db)
             win_rate = (wins/total) * 100
@@ -241,7 +232,7 @@ elif panel == "🧠 AI Strategic Mind":
             * Mean Economic Control Variance rests at **{avg_g_diff:+.1f} Net Gold** threshold variance limits.
             
             **Esports Structural Findings:**
-            1. **2026 Shift Dynamics:** High integration velocity observed when anchor drafts revolve around **Augran** and **Loong**. Your strategy securely exploits the V8.0 physical pierce parameters perfectly.
+            1. **2026 Shift Dynamics:** High integration velocity observed when anchor drafts revolve around **Augran** and **Loong**. Your strategy securely exploits physical pierce parameters perfectly.
             2. **Draft Vulnerability Warning:** Matches highlighting **Daji** or **Angela** down mid lanes reveal structural gold deficits during early map lane rotations. 
             3. **Executive Action Priority:** When dealing with aggressive counter networks, prioritize banning **Biron** if executing an aggressive Jungle system, forcing opponents onto low-mobility B-Tier standard kits.
             """)
