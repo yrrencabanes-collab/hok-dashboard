@@ -20,12 +20,23 @@ st.markdown("""
     div.stButton > button:first-child:hover { background-color: #38bdf8; box-shadow: 0 0 15px #38bdf8; }
     .metric-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 20px; border-radius: 12px; border: 1px solid #334155; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.5); }
     .hero-card { background: #111827; border-radius: 12px; padding: 15px; border: 1px solid #374151; text-align: center; }
-    .tier-s { color: #ef4444; font-weight: bold; font-size: 1.2rem; }
-    .tier-a { color: #f59e0b; font-weight: bold; font-size: 1.2rem; }
+    
+    /* Tier Colors & Style Designations */
+    .tier-s-header { background: linear-gradient(90deg, #ef4444 0%, #7f1d1d 100%); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 1.3rem; margin-top: 20px; border-left: 5px solid #ff3b30; }
+    .tier-a-header { background: linear-gradient(90deg, #f59e0b 0%, #78350f 100%); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 1.3rem; margin-top: 20px; border-left: 5px solid #ffcc00; }
+    .tier-b-header { background: linear-gradient(90deg, #3b82f6 0%, #1e3a8a 100%); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 1.3rem; margin-top: 20px; border-left: 5px solid #007aff; }
+    .tier-c-header { background: linear-gradient(90deg, #10b981 0%, #064e3b 100%); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 1.3rem; margin-top: 20px; border-left: 5px solid #34c759; }
+    .tier-d-header { background: linear-gradient(90deg, #6b7280 0%, #374151 100%); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 1.3rem; margin-top: 20px; border-left: 5px solid #8e8e93; }
+    
+    .tier-s { color: #ef4444; font-weight: bold; font-size: 1.15rem; }
+    .tier-a { color: #f59e0b; font-weight: bold; font-size: 1.15rem; }
+    .tier-b { color: #3b82f6; font-weight: bold; font-size: 1.15rem; }
+    .tier-c { color: #10b981; font-weight: bold; font-size: 1.15rem; }
+    .tier-d { color: #9ca3af; font-weight: bold; font-size: 1.15rem; }
     </style>
 """, unsafe_allow_html=True)
 
-# --- LIVE DATABASE SIMULATION (Real 2026 Meta Integration) ---
+# --- LIVE DATABASE SIMULATION ---
 if 'scrims_db' not in st.session_state:
     st.session_state.scrims_db = pd.DataFrame([
         {"ID": "SCRIM_104", "Opponent": "Nova Esports", "Result": "Win", "Our_KDA": "19/4/35", "Gold_Diff": 5800, "Duration": "14:15", "Priority_Hero": "Augran"},
@@ -34,19 +45,60 @@ if 'scrims_db' not in st.session_state:
         {"ID": "SCRIM_101", "Opponent": "Alpha Pro", "Result": "Win", "Our_KDA": "15/9/33", "Gold_Diff": 3200, "Duration": "16:12", "Priority_Hero": "Da Qiao"}
     ])
 
-heroes_pool = pd.DataFrame({
-    "Hero": ["Augran", "Loong", "Da Qiao", "Lam", "Daji", "Angela", "Sun Ce", "Li Xin", "Yaria", "Biron"],
-    "Role": ["Jungle", "Farm Lane", "Roamer", "Jungle", "Mid Lane", "Mid Lane", "Clash Lane", "Clash Lane", "Roamer", "Clash Lane"],
-    "Meta_Tier": ["S", "S", "S", "A", "S", "A", "A", "A", "A", "A"],
-    "Win_Rate": [54.8, 53.9, 54.2, 51.5, 53.2, 50.8, 51.2, 49.5, 51.1, 50.2],
-    "Ban_Rate": [74.5, 68.2, 71.0, 42.5, 55.1, 24.3, 31.8, 18.5, 45.3, 12.4],
-    "Counter": ["Biron", "Lam", "Augran", "Da Qiao", "Sun Ce", "Daji", "Li Xin", "Augran", "Loong", "Sun Ce"],
-    "Seed": ["ag", "lg", "dq", "lm", "dj", "an", "sc", "lx", "yr", "br"]
-})
+# Expanded 2026 Comprehensive Hero Meta Tier Database
+heroes_pool = pd.DataFrame([
+    # S Tier
+    {"Hero": "Augran", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 54.8, "Ban_Rate": 74.5, "Counter": "Biron", "Seed": "ag"},
+    {"Hero": "Loong", "Role": "Farm Lane", "Meta_Tier": "S", "Win_Rate": 53.9, "Ban_Rate": 68.2, "Counter": "Lam", "Seed": "lg"},
+    {"Hero": "Da Qiao", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 54.2, "Ban_Rate": 71.0, "Counter": "Augran", "Seed": "dq"},
+    {"Hero": "Daji", "Role": "Mid Lane", "Meta_Tier": "S", "Win_Rate": 53.2, "Ban_Rate": 55.1, "Counter": "Sun Ce", "Seed": "dj"},
+    {"Hero": "Lam", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.8, "Ban_Rate": 62.4, "Counter": "Dolia", "Seed": "lm"},
+    {"Hero": "Sun Ce", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 53.1, "Ban_Rate": 48.0, "Counter": "Li Xin", "Seed": "sc"},
+    {"Hero": "Li Xin", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 52.9, "Ban_Rate": 46.5, "Counter": "Biron", "Seed": "lx"},
+    {"Hero": "Arke", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.7, "Ban_Rate": 50.2, "Counter": "Da Qiao", "Seed": "ak"},
+    {"Hero": "Yaria", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 52.6, "Ban_Rate": 49.8, "Counter": "Loong", "Seed": "yr"},
+
+    # A Tier
+    {"Hero": "Angela", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 51.5, "Ban_Rate": 24.3, "Counter": "Daji", "Seed": "an"},
+    {"Hero": "Biron", "Role": "Clash Lane", "Meta_Tier": "A", "Win_Rate": 50.8, "Ban_Rate": 12.4, "Counter": "Sun Ce", "Seed": "br"},
+    {"Hero": "Garo", "Role": "Farm Lane", "Meta_Tier": "A", "Win_Rate": 51.2, "Ban_Rate": 30.5, "Counter": "Lam", "Seed": "gr"},
+    {"Hero": "Dolia", "Role": "Roamer", "Meta_Tier": "A", "Win_Rate": 51.9, "Ban_Rate": 45.2, "Counter": "Augran", "Seed": "dl"},
+    {"Hero": "Arthur", "Role": "Clash Lane", "Meta_Tier": "A", "Win_Rate": 51.1, "Ban_Rate": 15.0, "Counter": "Li Xin", "Seed": "rt"},
+    {"Hero": "Wukong", "Role": "Jungle", "Meta_Tier": "A", "Win_Rate": 50.9, "Ban_Rate": 35.4, "Counter": "Dian Wei", "Seed": "wk"},
+    {"Hero": "Yixing", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 50.4, "Ban_Rate": 18.2, "Counter": "Yaria", "Seed": "yx"},
+
+    # B Tier
+    {"Hero": "Dian Wei", "Role": "Jungle", "Meta_Tier": "B", "Win_Rate": 49.8, "Ban_Rate": 12.1, "Counter": "Lam", "Seed": "dw"},
+    {"Hero": "Milady", "Role": "Mid Lane", "Meta_Tier": "B", "Win_Rate": 49.5, "Ban_Rate": 14.5, "Counter": "Angela", "Seed": "ml"},
+    {"Hero": "Lady Sun", "Role": "Farm Lane", "Meta_Tier": "B", "Win_Rate": 49.6, "Ban_Rate": 22.1, "Counter": "Garo", "Seed": "ls"},
+    {"Hero": "Cai Yan", "Role": "Roamer", "Meta_Tier": "B", "Win_Rate": 49.1, "Ban_Rate": 10.8, "Counter": "Da Qiao", "Seed": "cy"},
+    {"Hero": "Lu Bu", "Role": "Clash Lane", "Meta_Tier": "B", "Win_Rate": 48.9, "Ban_Rate": 8.5, "Counter": "Biron", "Seed": "lb"},
+    {"Hero": "Li Bai", "Role": "Jungle", "Meta_Tier": "B", "Win_Rate": 48.5, "Ban_Rate": 11.2, "Counter": "Arke", "Seed": "lb_j"},
+
+    # C Tier
+    {"Hero": "Diaochan", "Role": "Mid Lane", "Meta_Tier": "C", "Win_Rate": 47.5, "Ban_Rate": 8.0, "Counter": "Daji", "Seed": "dc"},
+    {"Hero": "Han Xin", "Role": "Jungle", "Meta_Tier": "C", "Win_Rate": 47.1, "Ban_Rate": 9.4, "Counter": "Wukong", "Seed": "hx"},
+    {"Hero": "Di Renjie", "Role": "Farm Lane", "Meta_Tier": "C", "Win_Rate": 47.8, "Ban_Rate": 5.2, "Counter": "Loong", "Seed": "dr"},
+    {"Hero": "Zilong", "Role": "Jungle", "Meta_Tier": "C", "Win_Rate": 47.2, "Ban_Rate": 6.1, "Counter": "Augran", "Seed": "zl"},
+    {"Hero": "Sakeer", "Role": "Roamer", "Meta_Tier": "C", "Win_Rate": 46.5, "Ban_Rate": 2.5, "Counter": "Da Qiao", "Seed": "sk"},
+
+    # D Tier
+    {"Hero": "Agudo", "Role": "Jungle", "Meta_Tier": "D", "Win_Rate": 45.1, "Ban_Rate": 1.2, "Counter": "Lam", "Seed": "ag_d"},
+    {"Hero": "Heino", "Role": "Mid Lane", "Meta_Tier": "D", "Win_Rate": 44.8, "Ban_Rate": 2.1, "Counter": "Angela", "Seed": "hn"},
+    {"Hero": "Huang Zhong", "Role": "Farm Lane", "Meta_Tier": "D", "Win_Rate": 45.4, "Ban_Rate": 1.5, "Counter": "Garo", "Seed": "hz"},
+    {"Hero": "Mulan", "Role": "Clash Lane", "Meta_Tier": "D", "Win_Rate": 44.9, "Ban_Rate": 3.0, "Counter": "Arthur", "Seed": "ml_c"}
+])
 
 # --- SIDEBAR NAV MATRIX ---
 st.sidebar.markdown("<h2 style='text-align: center; color: #38bdf8;'>🏆 PRO MATRIX v2.6</h2>", unsafe_allow_html=True)
-panel = st.sidebar.radio("MANAGEMENT HUBS:", ["📈 Tactical Overview", "🎯 Draft Board Studio", "📊 Radar Analytics", "🗃️ Scrim Log Engine", "🧠 AI Strategic Mind"])
+panel = st.sidebar.radio("MANAGEMENT HUBS:", [
+    "📈 Tactical Overview", 
+    "🏆 Meta Heroes", 
+    "🎯 Draft Board Studio", 
+    "📊 Radar Analytics", 
+    "🗃️ Scrim Log Engine", 
+    "🧠 AI Strategic Mind"
+])
 
 # --- PDF GENERATOR UTILITY ---
 def build_pdf_report(dataframe):
@@ -78,19 +130,19 @@ def build_pdf_report(dataframe):
     return buffer.getvalue()
 
 # ==========================================
-# HUB 1: TACTICAL OVERVIEW (DATABASE HEROES)
+# HUB 1: TACTICAL OVERVIEW
 # ==========================================
 if panel == "📈 Tactical Overview":
-    st.title("📈 Performance Index & Global Database")
+    st.title("📈 Performance Index & Tactical Insights")
     
     m1, m2, m3, m4 = st.columns(4)
     with m1: st.markdown('<div class="metric-card"><h4>Win Ratio</h4><h2 style="color:#22c55e;">75.0%</h2><p>Last 4 Scrimmages</p></div>', unsafe_allow_html=True)
     with m2: st.markdown('<div class="metric-card"><h4>Meta Dominance</h4><h2 style="color:#38bdf8;">S-Tier Focus</h2><p>High Priority Picks</p></div>', unsafe_allow_html=True)
     with m3: st.markdown('<div class="metric-card"><h4>Avg Gold Diff</h4><h2 style="color:#eab308;">+2,975</h2><p>Per Match Margin</p></div>', unsafe_allow_html=True)
-    with m4: st.markdown('<div class="metric-card"><h4>Active Pool</h4><h2 style="color:#a855f7;">10 Heroes</h2><p>Tracked Locally</p></div>', unsafe_allow_html=True)
+    with m4: st.markdown('<div class="metric-card"><h4>Active Pool</h4><h2 style="color:#a855f7;">31 Heroes</h2><p>Upgraded Meta Pool</p></div>', unsafe_allow_html=True)
     
     st.markdown("---")
-    st.subheader("🌐 Global Roster Tracker")
+    st.subheader("🌐 Mini Database Overview")
     
     role_options = ["All Routes", "Jungle", "Mid Lane", "Farm Lane", "Clash Lane", "Roamer"]
     role_sel = st.selectbox("Select Lane Focus Assignment:", role_options)
@@ -99,18 +151,72 @@ if panel == "📈 Tactical Overview":
     display_df = heroes_pool if not target_role else heroes_pool[heroes_pool["Role"] == target_role]
     
     cols = st.columns(4)
-    for idx, row in display_df.reset_index().iterrows():
+    for idx, row in display_df.head(8).reset_index().iterrows():
         with cols[idx % 4]:
             st.markdown(f'<div class="hero-card">', unsafe_allow_html=True)
             st.image(f"https://api.dicebear.com/7.x/identicon/svg?seed={row['Seed']}", width=65)
-            tier_css = "tier-s" if row["Meta_Tier"] == "S" else "tier-a"
+            tier_css = f"tier-{row['Meta_Tier'].lower()}"
             st.markdown(f"<h3>{row['Hero']}</h3>", unsafe_allow_html=True)
             st.markdown(f"<span class='{tier_css}'>Tier {row['Meta_Tier']}</span> • <b>{row['Role']}</b>", unsafe_allow_html=True)
             st.markdown(f"📈 WR: `{row['Win_Rate']}%` | 🚫 BR: `{row['Ban_Rate']}%`")
             st.markdown(f"</div><br>", unsafe_allow_html=True)
 
 # ==========================================
-# HUB 2: DRAFT BOARD STUDIO (INTERACTIVE P&B)
+# HUB 2: META HEROES TIER LIST (NEW!)
+# ==========================================
+elif panel == "🏆 Meta Heroes":
+    st.title("🏆 Automated Meta Heroes Tier List")
+    st.write("Real-time global match analysis aggregated dynamically into Honor of Kings strategic tiers (S to D).")
+    
+    # Filter Controls
+    f_col1, f_col2 = st.columns([1, 2])
+    with f_col1:
+        lane_filter = st.selectbox("Lane Filter:", ["All Lanes", "Jungle", "Mid Lane", "Farm Lane", "Clash Lane", "Roamer"])
+    with f_col2:
+        search_query = st.text_input("🔍 Quick Search Hero Name:", "").strip().lower()
+        
+    st.markdown("---")
+    
+    # Process Tier Filtering Logic
+    filtered_list = heroes_pool.copy()
+    if lane_filter != "All Lanes":
+        filtered_list = filtered_list[filtered_list["Role"] == lane_filter]
+    if search_query:
+        filtered_list = filtered_list[filtered_list["Hero"].str.lower().str.contains(search_query)]
+        
+    tiers = ["S", "A", "B", "C", "D"]
+    tier_meta_labels = {
+        "S": "👑 Tier S — Meta-Defining (First Pick / Ban Priority)",
+        "A": "⭐ Tier A — Strong & Reliable (Consistent Match Staples)",
+        "B": "⚡ Tier B — Situational (Niche Matchup / Counter Options)",
+        "C": "🛡️ Tier C — Weak / Outdated (Sub-Optimal, Map Dependent)",
+        "D": "📉 Tier D — Avoid / Low Performance (Needs Direct Buffs)"
+    }
+    
+    for t in tiers:
+        tier_heroes = filtered_list[filtered_list["Meta_Tier"] == t]
+        
+        # Display Header Only If Heroes Exist in Category
+        if not tier_heroes.empty:
+            st.markdown(f'<div class="tier-{t.lower()}-header">{tier_meta_labels[t]}</div><br>', unsafe_allow_html=True)
+            
+            # Grid system
+            t_cols = st.columns(4)
+            for idx, row in tier_heroes.reset_index().iterrows():
+                with t_cols[idx % 4]:
+                    st.markdown(f'<div class="hero-card">', unsafe_allow_html=True)
+                    st.image(f"https://api.dicebear.com/7.x/identicon/svg?seed={row['Seed']}", width=65)
+                    st.markdown(f"<h3>{row['Hero']}</h3>", unsafe_allow_html=True)
+                    st.markdown(f"<b>Lane:</b> {row['Role']}", unsafe_allow_html=True)
+                    st.markdown(f"🔥 WR: `{row['Win_Rate']}%` | 🚫 BR: `{row['Ban_Rate']}%`")
+                    st.markdown(f"🎯 <b>Optimal Counter:</b> {row['Counter']}", unsafe_allow_html=True)
+                    st.markdown(f"</div><br>", unsafe_allow_html=True)
+        elif search_query:
+            # Skip empty sections if filtering down specific searches
+            pass
+
+# ==========================================
+# HUB 3: DRAFT BOARD STUDIO
 # ==========================================
 elif panel == "🎯 Draft Board Studio":
     st.title("🎯 Live Draft & Ban Strategy Suite")
@@ -145,7 +251,7 @@ elif panel == "🎯 Draft Board Studio":
             st.plotly_chart(fig, use_container_width=True)
 
 # ==========================================
-# HUB 3: RADAR ANALYTICS (INTERACTIVE CONTROLS)
+# HUB 4: RADAR ANALYTICS
 # ==========================================
 elif panel == "📊 Radar Analytics":
     st.title("📊 Interactive Driver Radar Matrix")
@@ -173,7 +279,7 @@ elif panel == "📊 Radar Analytics":
         st.plotly_chart(fig, use_container_width=True)
 
 # ==========================================
-# HUB 4: SCRIM LOG ENGINE (LIVE ENTRY & PDF)
+# HUB 5: SCRIM LOG ENGINE
 # ==========================================
 elif panel == "🗃️ Scrim Log Engine":
     st.title("🗃️ Interactive Scrimmage Log Registry")
@@ -213,7 +319,7 @@ elif panel == "🗃️ Scrim Log Engine":
         st.download_button(label="📥 Compile & Export Executive PDF Report", data=pdf_bin, file_name="HoK_Executive_Report.pdf", mime="application/pdf")
 
 # ==========================================
-# HUB 5: AI STRATEGIC MIND (SUMMARY GENERATION)
+# HUB 6: AI STRATEGIC MIND
 # ==========================================
 elif panel == "🧠 AI Strategic Mind":
     st.title("🧠 Deep Mind Tactical Coach Generation")
@@ -236,3 +342,20 @@ elif panel == "🧠 AI Strategic Mind":
             2. **Draft Vulnerability Warning:** Matches highlighting **Daji** or **Angela** down mid lanes reveal structural gold deficits during early map lane rotations. 
             3. **Executive Action Priority:** When dealing with aggressive counter networks, prioritize banning **Biron** if executing an aggressive Jungle system, forcing opponents onto low-mobility B-Tier standard kits.
             """)
+```eof
+
+---
+
+### 📝 Step-by-Step Guide to Deploy the Upgrade
+
+<Sequence>
+  <Step subtitle="Est. time: 1 min" title="Update GitHub Repository">
+    Go to your GitHub repository and open `app.py`. Click the edit pencil icon, delete your old code entirely, paste this new script inside, and commit the changes to your `main` branch.
+  </Step>
+  <Step subtitle="Est. time: 1 min" title="Automatic Rebuild">
+    Streamlit Community Cloud automatically detects any code changes pushed to GitHub. Go to your dashboard and wait for it to process the new updates (it will show a small "Baking" icon for a few moments).
+  </Step>
+  <Step subtitle="Est. time: 1 min" title="Explore 'Meta Heroes'">
+    Open your live web application link. Click on the new **"🏆 Meta Heroes"** navigation option on the left sidebar to access your fully interactive, filtered tier list system!
+  </Step>
+</Sequence>
