@@ -48,15 +48,15 @@ if 'scrims_db' not in st.session_state:
 # Comprehensive Hero Meta Database Mapping Verified Wiki Layout Asset Structures
 heroes_pool = pd.DataFrame([
     # S Tier
-    {"Hero": "Augran", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 54.8, "Ban_Rate": 74.5, "Counter": "Biron", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/c/c8/Augran.png"},
-    {"Hero": "Loong", "Role": "Farm Lane", "Meta_Tier": "S", "Win_Rate": 53.9, "Ban_Rate": 68.2, "Counter": "Lam", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/4/4e/Loong.png"},
-    {"Hero": "Da Qiao", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 54.2, "Ban_Rate": 71.0, "Counter": "Augran", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/1/1d/Da_Qiao.png"},
-    {"Hero": "Daji", "Role": "Mid Lane", "Meta_Tier": "S", "Win_Rate": 53.2, "Ban_Rate": 55.1, "Counter": "Sun Ce", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/8/87/Daji.png"},
-    {"Hero": "Lam", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.8, "Ban_Rate": 62.4, "Counter": "Dolia", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/9/9f/Lam.png"},
-    {"Hero": "Sun Ce", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 53.1, "Ban_Rate": 48.0, "Counter": "Li Xin", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/c/c3/Sun_Ce.png"},
-    {"Hero": "Li Xin", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 52.9, "Ban_Rate": 46.5, "Counter": "Biron", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/0/07/Li_Xin.png"},
-    {"Hero": "Arke", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.7, "Ban_Rate": 50.2, "Counter": "Da Qiao", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/6/67/Arke.png"},
-    {"Hero": "Yaria", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 52.6, "Ban_Rate": 49.8, "Counter": "Loong", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/e/e0/Yaria.png"},
+    {"Hero": "Augran", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 54.8, "Ban_Rate": 74.5, "Counter": "Biron", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/a/a7/Augran_Icon.png/revision/latest/scale-to-width-down/64?cb=20241028034313"},
+    {"Hero": "Loong", "Role": "Farm Lane", "Meta_Tier": "S", "Win_Rate": 53.9, "Ban_Rate": 68.2, "Counter": "Lam", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/f/f8/Loong_Icon.png/revision/latest/scale-to-width-down/64?cb=20241028035241"},
+    {"Hero": "Da Qiao", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 54.2, "Ban_Rate": 71.0, "Counter": "Augran", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/3/39/Da_Qiao_Icon.png/revision/latest/scale-to-width-down/64?cb=20240528113551"},
+    {"Hero": "Daji", "Role": "Mid Lane", "Meta_Tier": "S", "Win_Rate": 53.2, "Ban_Rate": 55.1, "Counter": "Sun Ce", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/4/4f/Daji_Icon.png/revision/latest/scale-to-width-down/64?cb=20240528113552"},
+    {"Hero": "Lam", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.8, "Ban_Rate": 62.4, "Counter": "Dolia", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/5/5a/Lam_Icon.png/revision/latest/scale-to-width-down/64?cb=20240528113619"},
+    {"Hero": "Sun Ce", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 53.1, "Ban_Rate": 48.0, "Counter": "Li Xin", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/4/4f/Sun_Ce_Icon.png/revision/latest/scale-to-width-down/64?cb=20241028033625"},
+    {"Hero": "Li Xin", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 52.9, "Ban_Rate": 46.5, "Counter": "Biron", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/1/1f/Li_Xin_Icon.png/revision/latest/scale-to-width-down/64?cb=20240528113621"},
+    {"Hero": "Arke", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.7, "Ban_Rate": 50.2, "Counter": "Da Qiao", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/5/55/Arke_Icon.png/revision/latest/scale-to-width-down/64?cb=20250117025646"},
+    {"Hero": "Yaria", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 52.6, "Ban_Rate": 49.8, "Counter": "Loong", "Image_Url": "https://static.wikia.nocookie.net/honor-of-kings/images/7/70/Yaria_Icon.png/revision/latest/scale-to-width-down/64?cb=20240528113653"},
 
     # A Tier
     {"Hero": "Angela", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 51.5, "Ban_Rate": 24.3, "Counter": "Daji", "Image_Url": "https://vignette.wikia.nocookie.net/honor-of-kings/images/3/36/Angela.png"},
