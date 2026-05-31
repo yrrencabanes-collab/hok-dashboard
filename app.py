@@ -342,18 +342,6 @@ elif panel == "🧠 AI Strategic Mind":
             2. **Draft Vulnerability Warning:** Matches highlighting **Daji** or **Angela** down mid lanes reveal structural gold deficits during early map lane rotations. 
             3. **Executive Action Priority:** When dealing with aggressive counter networks, prioritize banning **Biron** if executing an aggressive Jungle system, forcing opponents onto low-mobility B-Tier standard kits.
             """)
+```eof
 
-
-### 📝 Step-by-Step Guide to Deploy the Upgrade
-
-<Sequence>
-  <Step subtitle="Est. time: 1 min" title="Update GitHub Repository">
-    Go to your GitHub repository and open `app.py`. Click the edit pencil icon, delete your old code entirely, paste this new script inside, and commit the changes to your `main` branch.
-  </Step>
-  <Step subtitle="Est. time: 1 min" title="Automatic Rebuild">
-    Streamlit Community Cloud automatically detects any code changes pushed to GitHub. Go to your dashboard and wait for it to process the new updates (it will show a small "Baking" icon for a few moments).
-  </Step>
-  <Step subtitle="Est. time: 1 min" title="Explore 'Meta Heroes'">
-    Open your live web application link. Click on the new **"🏆 Meta Heroes"** navigation option on the left sidebar to access your fully interactive, filtered tier list system!
-  </Step>
-</Sequence>
+---
