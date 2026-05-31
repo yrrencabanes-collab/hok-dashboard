@@ -1,0 +1,5 @@
+hero,role,win_rate,pick_rate,ban_pressure,synergy_score,counters,tier
+Arthur,Exp Lane,52,60,40,70,"Zilong",A
+Zilong,Jungle,55,65,30,60,"Arthur",S
+Diao Chan,Mid Lane,58,70,50,80,"Mage Burst",S
+Sun Shangxiang,Gold Lane,54,75,45,85,"Assassins",S
