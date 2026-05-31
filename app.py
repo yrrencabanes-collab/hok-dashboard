@@ -343,7 +343,6 @@ elif panel == "🧠 AI Strategic Mind":
             3. **Executive Action Priority:** When dealing with aggressive counter networks, prioritize banning **Biron** if executing an aggressive Jungle system, forcing opponents onto low-mobility B-Tier standard kits.
             """)
 
----
 
 ### 📝 Step-by-Step Guide to Deploy the Upgrade
 
