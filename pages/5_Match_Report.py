@@ -1,12 +1,15 @@
 import streamlit as st
 import pandas as pd
+from core.match_analyzer import MatchAnalyzer
 
-st.title("📁 Match History")
+st.title("🧾 AI Match Report Generator")
 
-data = pd.DataFrame({
-    "Opponent": ["Team A", "Team B", "Team C"],
-    "Result": ["Win", "Loss", "Win"],
-    "Duration": ["18:10", "22:05", "19:45"]
-})
+match = pd.read_csv("data/match_history.csv")
 
-st.dataframe(data, use_container_width=True)
+analyzer = MatchAnalyzer()
+
+if st.button("Generate Report"):
+    report, summary = analyzer.generate_report(match.iloc[-1])
+
+    st.json(report)
+    st.success(summary)
