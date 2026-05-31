@@ -10,6 +10,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 
 # --- UPGRADED INITIAL CONFIG & ULTRA-DARK MATCH MATRIX ---
+st.image(f"https://api.dicebear.com/7.x/identicon/svg?seed={row['Seed']}", width=65)
 st.set_page_config(page_title="HOK Global PRO Analyst Panel", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
