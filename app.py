@@ -342,7 +342,6 @@ elif panel == "🧠 AI Strategic Mind":
             2. **Draft Vulnerability Warning:** Matches highlighting **Daji** or **Angela** down mid lanes reveal structural gold deficits during early map lane rotations. 
             3. **Executive Action Priority:** When dealing with aggressive counter networks, prioritize banning **Biron** if executing an aggressive Jungle system, forcing opponents onto low-mobility B-Tier standard kits.
             """)
-```eof
 
 ---
 
