@@ -45,7 +45,7 @@ if 'scrims_db' not in st.session_state:
         {"ID": "SCRIM_101", "Opponent": "Alpha Pro", "Result": "Win", "Our_KDA": "15/9/33", "Gold_Diff": 3200, "Duration": "16:12", "Priority_Hero": "Da Qiao"}
     ])
 
-# Expanded 2026 Comprehensive Hero Meta Tier Database
+# Expanded Comprehensive Hero Meta Tier Database
 heroes_pool = pd.DataFrame([
     # S Tier
     {"Hero": "Augran", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 54.8, "Ban_Rate": 74.5, "Counter": "Biron", "Seed": "ag"},
@@ -162,13 +162,12 @@ if panel == "📈 Tactical Overview":
             st.markdown(f"</div><br>", unsafe_allow_html=True)
 
 # ==========================================
-# HUB 2: META HEROES TIER LIST (NEW!)
+# HUB 2: META HEROES TIER LIST
 # ==========================================
 elif panel == "🏆 Meta Heroes":
     st.title("🏆 Automated Meta Heroes Tier List")
     st.write("Real-time global match analysis aggregated dynamically into Honor of Kings strategic tiers (S to D).")
     
-    # Filter Controls
     f_col1, f_col2 = st.columns([1, 2])
     with f_col1:
         lane_filter = st.selectbox("Lane Filter:", ["All Lanes", "Jungle", "Mid Lane", "Farm Lane", "Clash Lane", "Roamer"])
@@ -177,7 +176,6 @@ elif panel == "🏆 Meta Heroes":
         
     st.markdown("---")
     
-    # Process Tier Filtering Logic
     filtered_list = heroes_pool.copy()
     if lane_filter != "All Lanes":
         filtered_list = filtered_list[filtered_list["Role"] == lane_filter]
@@ -196,11 +194,9 @@ elif panel == "🏆 Meta Heroes":
     for t in tiers:
         tier_heroes = filtered_list[filtered_list["Meta_Tier"] == t]
         
-        # Display Header Only If Heroes Exist in Category
         if not tier_heroes.empty:
             st.markdown(f'<div class="tier-{t.lower()}-header">{tier_meta_labels[t]}</div><br>', unsafe_allow_html=True)
             
-            # Grid system
             t_cols = st.columns(4)
             for idx, row in tier_heroes.reset_index().iterrows():
                 with t_cols[idx % 4]:
@@ -211,9 +207,6 @@ elif panel == "🏆 Meta Heroes":
                     st.markdown(f"🔥 WR: `{row['Win_Rate']}%` | 🚫 BR: `{row['Ban_Rate']}%`")
                     st.markdown(f"🎯 <b>Optimal Counter:</b> {row['Counter']}", unsafe_allow_html=True)
                     st.markdown(f"</div><br>", unsafe_allow_html=True)
-        elif search_query:
-            # Skip empty sections if filtering down specific searches
-            pass
 
 # ==========================================
 # HUB 3: DRAFT BOARD STUDIO
@@ -342,6 +335,3 @@ elif panel == "🧠 AI Strategic Mind":
             2. **Draft Vulnerability Warning:** Matches highlighting **Daji** or **Angela** down mid lanes reveal structural gold deficits during early map lane rotations. 
             3. **Executive Action Priority:** When dealing with aggressive counter networks, prioritize banning **Biron** if executing an aggressive Jungle system, forcing opponents onto low-mobility B-Tier standard kits.
             """)
-```eof
-
----
