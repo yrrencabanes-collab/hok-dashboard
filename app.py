@@ -7,7 +7,7 @@ st.set_page_config(
     page_title="Esports Coach Dashboard",
     page_icon="🎮",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded"  # <-- This forces it open on load
 )
 
 # Initialize Session State Data if it doesn't exist
