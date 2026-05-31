@@ -45,52 +45,52 @@ if 'scrims_db' not in st.session_state:
         {"ID": "SCRIM_101", "Opponent": "Alpha Pro", "Result": "Win", "Our_KDA": "15/9/33", "Gold_Diff": 3200, "Duration": "16:12", "Priority_Hero": "Da Qiao"}
     ])
 
-# Expanded Comprehensive Hero Meta Tier Database with Asset Routing
+# Expanded Comprehensive Hero Meta Tier Database with Bulletproof Open Delivery Avatars
 heroes_pool = pd.DataFrame([
     # S Tier
-    {"Hero": "Augran", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 54.8, "Ban_Rate": 74.5, "Counter": "Biron", "Image_Url": "https://img.vgn.cn/hok/hero/head/548.png"},
-    {"Hero": "Loong", "Role": "Farm Lane", "Meta_Tier": "S", "Win_Rate": 53.9, "Ban_Rate": 68.2, "Counter": "Lam", "Image_Url": "https://img.vgn.cn/hok/hero/head/544.png"},
-    {"Hero": "Da Qiao", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 54.2, "Ban_Rate": 71.0, "Counter": "Augran", "Image_Url": "https://img.vgn.cn/hok/hero/head/190.png"},
-    {"Hero": "Daji", "Role": "Mid Lane", "Meta_Tier": "S", "Win_Rate": 53.2, "Ban_Rate": 55.1, "Counter": "Sun Ce", "Image_Url": "https://img.vgn.cn/hok/hero/head/109.png"},
-    {"Hero": "Lam", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.8, "Ban_Rate": 62.4, "Counter": "Dolia", "Image_Url": "https://img.vgn.cn/hok/hero/head/534.png"},
-    {"Hero": "Sun Ce", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 53.1, "Ban_Rate": 48.0, "Counter": "Li Xin", "Image_Url": "https://img.vgn.cn/hok/hero/head/510.png"},
-    {"Hero": "Li Xin", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 52.9, "Ban_Rate": 46.5, "Counter": "Biron", "Image_Url": "https://img.vgn.cn/hok/hero/head/513.png"},
-    {"Hero": "Arke", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.7, "Ban_Rate": 50.2, "Counter": "Da Qiao", "Image_Url": "https://img.vgn.cn/hok/hero/head/107.png"},
-    {"Hero": "Yaria", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 52.6, "Ban_Rate": 49.8, "Counter": "Loong", "Image_Url": "https://img.vgn.cn/hok/hero/head/505.png"},
+    {"Hero": "Augran", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 54.8, "Ban_Rate": 74.5, "Counter": "Biron", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Augran"},
+    {"Hero": "Loong", "Role": "Farm Lane", "Meta_Tier": "S", "Win_Rate": 53.9, "Ban_Rate": 68.2, "Counter": "Lam", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Loong"},
+    {"Hero": "Da Qiao", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 54.2, "Ban_Rate": 71.0, "Counter": "Augran", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=DaQiao"},
+    {"Hero": "Daji", "Role": "Mid Lane", "Meta_Tier": "S", "Win_Rate": 53.2, "Ban_Rate": 55.1, "Counter": "Sun Ce", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Daji"},
+    {"Hero": "Lam", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.8, "Ban_Rate": 62.4, "Counter": "Dolia", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Lam"},
+    {"Hero": "Sun Ce", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 53.1, "Ban_Rate": 48.0, "Counter": "Li Xin", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=SunCe"},
+    {"Hero": "Li Xin", "Role": "Clash Lane", "Meta_Tier": "S", "Win_Rate": 52.9, "Ban_Rate": 46.5, "Counter": "Biron", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=LiXin"},
+    {"Hero": "Arke", "Role": "Jungle", "Meta_Tier": "S", "Win_Rate": 52.7, "Ban_Rate": 50.2, "Counter": "Da Qiao", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Arke"},
+    {"Hero": "Yaria", "Role": "Roamer", "Meta_Tier": "S", "Win_Rate": 52.6, "Ban_Rate": 49.8, "Counter": "Loong", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Yaria"},
 
     # A Tier
-    {"Hero": "Angela", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 51.5, "Ban_Rate": 24.3, "Counter": "Daji", "Image_Url": "https://img.vgn.cn/hok/hero/head/142.png"},
-    {"Hero": "Biron", "Role": "Clash Lane", "Meta_Tier": "A", "Win_Rate": 50.8, "Ban_Rate": 12.4, "Counter": "Sun Ce", "Image_Url": "https://img.vgn.cn/hok/hero/head/503.png"},
-    {"Hero": "Garo", "Role": "Farm Lane", "Meta_Tier": "A", "Win_Rate": 51.2, "Ban_Rate": 30.5, "Counter": "Lam", "Image_Url": "https://img.vgn.cn/hok/hero/head/508.png"},
-    {"Hero": "Dolia", "Role": "Roamer", "Meta_Tier": "A", "Win_Rate": 51.9, "Ban_Rate": 45.2, "Counter": "Augran", "Image_Url": "https://img.vgn.cn/hok/hero/head/543.png"},
-    {"Hero": "Arthur", "Role": "Clash Lane", "Meta_Tier": "A", "Win_Rate": 51.1, "Ban_Rate": 15.0, "Counter": "Li Xin", "Image_Url": "https://img.vgn.cn/hok/hero/head/166.png"},
-    {"Hero": "Wukong", "Role": "Jungle", "Meta_Tier": "A", "Win_Rate": 50.9, "Ban_Rate": 35.4, "Counter": "Dian Wei", "Image_Url": "https://img.vgn.cn/hok/hero/head/167.png"},
-    {"Hero": "Yixing", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 50.4, "Ban_Rate": 18.2, "Counter": "Yaria", "Image_Url": "https://img.vgn.cn/hok/hero/head/501.png"},
+    {"Hero": "Angela", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 51.5, "Ban_Rate": 24.3, "Counter": "Daji", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Angela"},
+    {"Hero": "Biron", "Role": "Clash Lane", "Meta_Tier": "A", "Win_Rate": 50.8, "Ban_Rate": 12.4, "Counter": "Sun Ce", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Biron"},
+    {"Hero": "Garo", "Role": "Farm Lane", "Meta_Tier": "A", "Win_Rate": 51.2, "Ban_Rate": 30.5, "Counter": "Lam", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Garo"},
+    {"Hero": "Dolia", "Role": "Roamer", "Meta_Tier": "A", "Win_Rate": 51.9, "Ban_Rate": 45.2, "Counter": "Augran", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Dolia"},
+    {"Hero": "Arthur", "Role": "Clash Lane", "Meta_Tier": "A", "Win_Rate": 51.1, "Ban_Rate": 15.0, "Counter": "Li Xin", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Arthur"},
+    {"Hero": "Wukong", "Role": "Jungle", "Meta_Tier": "A", "Win_Rate": 50.9, "Ban_Rate": 35.4, "Counter": "Dian Wei", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Wukong"},
+    {"Hero": "Yixing", "Role": "Mid Lane", "Meta_Tier": "A", "Win_Rate": 50.4, "Ban_Rate": 18.2, "Counter": "Yaria", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Yixing"},
 
     # B Tier
-    {"Hero": "Dian Wei", "Role": "Jungle", "Meta_Tier": "B", "Win_Rate": 49.8, "Ban_Rate": 12.1, "Counter": "Lam", "Image_Url": "https://img.vgn.cn/hok/hero/head/127.png"},
-    {"Hero": "Milady", "Role": "Mid Lane", "Meta_Tier": "B", "Win_Rate": 49.5, "Ban_Rate": 14.5, "Counter": "Angela", "Image_Url": "https://img.vgn.cn/hok/hero/head/504.png"},
-    {"Hero": "Lady Sun", "Role": "Farm Lane", "Meta_Tier": "B", "Win_Rate": 49.6, "Ban_Rate": 22.1, "Counter": "Garo", "Image_Url": "https://img.vgn.cn/hok/hero/head/111.png"},
-    {"Hero": "Cai Yan", "Role": "Roamer", "Meta_Tier": "B", "Win_Rate": 49.1, "Ban_Rate": 10.8, "Counter": "Da Qiao", "Image_Url": "https://img.vgn.cn/hok/hero/head/184.png"},
-    {"Hero": "Lu Bu", "Role": "Clash Lane", "Meta_Tier": "B", "Win_Rate": 48.9, "Ban_Rate": 8.5, "Counter": "Biron", "Image_Url": "https://img.vgn.cn/hok/hero/head/123.png"},
-    {"Hero": "Li Bai", "Role": "Jungle", "Meta_Tier": "B", "Win_Rate": 48.5, "Ban_Rate": 11.2, "Counter": "Arke", "Image_Url": "https://img.vgn.cn/hok/hero/head/131.png"},
+    {"Hero": "Dian Wei", "Role": "Jungle", "Meta_Tier": "B", "Win_Rate": 49.8, "Ban_Rate": 12.1, "Counter": "Lam", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=DianWei"},
+    {"Hero": "Milady", "Role": "Mid Lane", "Meta_Tier": "B", "Win_Rate": 49.5, "Ban_Rate": 14.5, "Counter": "Angela", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Milady"},
+    {"Hero": "Lady Sun", "Role": "Farm Lane", "Meta_Tier": "B", "Win_Rate": 49.6, "Ban_Rate": 22.1, "Counter": "Garo", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=LadySun"},
+    {"Hero": "Cai Yan", "Role": "Roamer", "Meta_Tier": "B", "Win_Rate": 49.1, "Ban_Rate": 10.8, "Counter": "Da Qiao", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=CaiYan"},
+    {"Hero": "Lu Bu", "Role": "Clash Lane", "Meta_Tier": "B", "Win_Rate": 48.9, "Ban_Rate": 8.5, "Counter": "Biron", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=LuBu"},
+    {"Hero": "Li Bai", "Role": "Jungle", "Meta_Tier": "B", "Win_Rate": 48.5, "Ban_Rate": 11.2, "Counter": "Arke", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=LiBai"},
 
     # C Tier
-    {"Hero": "Diaochan", "Role": "Mid Lane", "Meta_Tier": "C", "Win_Rate": 47.5, "Ban_Rate": 8.0, "Counter": "Daji", "Image_Url": "https://img.vgn.cn/hok/hero/head/141.png"},
-    {"Hero": "Han Xin", "Role": "Jungle", "Meta_Tier": "C", "Win_Rate": 47.1, "Ban_Rate": 9.4, "Counter": "Wukong", "Image_Url": "https://img.vgn.cn/hok/hero/head/150.png"},
-    {"Hero": "Di Renjie", "Role": "Farm Lane", "Meta_Tier": "C", "Win_Rate": 47.8, "Ban_Rate": 5.2, "Counter": "Loong", "Image_Url": "https://img.vgn.cn/hok/hero/head/133.png"},
-    {"Hero": "Zilong", "Role": "Jungle", "Meta_Tier": "C", "Win_Rate": 47.2, "Ban_Rate": 6.1, "Counter": "Augran", "Image_Url": "https://img.vgn.cn/hok/hero/head/105.png"},
-    {"Hero": "Sakeer", "Role": "Roamer", "Meta_Tier": "C", "Win_Rate": 46.5, "Ban_Rate": 2.5, "Counter": "Da Qiao", "Image_Url": "https://img.vgn.cn/hok/hero/head/524.png"},
+    {"Hero": "Diaochan", "Role": "Mid Lane", "Meta_Tier": "C", "Win_Rate": 47.5, "Ban_Rate": 8.0, "Counter": "Daji", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Diaochan"},
+    {"Hero": "Han Xin", "Role": "Jungle", "Meta_Tier": "C", "Win_Rate": 47.1, "Ban_Rate": 9.4, "Counter": "Wukong", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=HanXin"},
+    {"Hero": "Di Renjie", "Role": "Farm Lane", "Meta_Tier": "C", "Win_Rate": 47.8, "Ban_Rate": 5.2, "Counter": "Loong", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=DiRenjie"},
+    {"Hero": "Zilong", "Role": "Jungle", "Meta_Tier": "C", "Win_Rate": 47.2, "Ban_Rate": 6.1, "Counter": "Augran", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Zilong"},
+    {"Hero": "Sakeer", "Role": "Roamer", "Meta_Tier": "C", "Win_Rate": 46.5, "Ban_Rate": 2.5, "Counter": "Da Qiao", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Sakeer"},
 
     # D Tier
-    {"Hero": "Agudo", "Role": "Jungle", "Meta_Tier": "D", "Win_Rate": 45.1, "Ban_Rate": 1.2, "Counter": "Lam", "Image_Url": "https://img.vgn.cn/hok/hero/head/533.png"},
-    {"Hero": "Heino", "Role": "Mid Lane", "Meta_Tier": "D", "Win_Rate": 44.8, "Ban_Rate": 2.1, "Counter": "Angela", "Image_Url": "https://img.vgn.cn/hok/hero/head/542.png"},
-    {"Hero": "Huang Zhong", "Role": "Farm Lane", "Meta_Tier": "D", "Win_Rate": 45.4, "Ban_Rate": 1.5, "Counter": "Garo", "Image_Url": "https://img.vgn.cn/hok/hero/head/187.png"},
-    {"Hero": "Mulan", "Role": "Clash Lane", "Meta_Tier": "D", "Win_Rate": 44.9, "Ban_Rate": 3.0, "Counter": "Arthur", "Image_Url": "https://img.vgn.cn/hok/hero/head/119.png"}
+    {"Hero": "Agudo", "Role": "Jungle", "Meta_Tier": "D", "Win_Rate": 45.1, "Ban_Rate": 1.2, "Counter": "Lam", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Agudo"},
+    {"Hero": "Heino", "Role": "Mid Lane", "Meta_Tier": "D", "Win_Rate": 44.8, "Ban_Rate": 2.1, "Counter": "Angela", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Heino"},
+    {"Hero": "Huang Zhong", "Role": "Farm Lane", "Meta_Tier": "D", "Win_Rate": 45.4, "Ban_Rate": 1.5, "Counter": "Garo", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=HuangZhong"},
+    {"Hero": "Mulan", "Role": "Clash Lane", "Meta_Tier": "D", "Win_Rate": 44.9, "Ban_Rate": 3.0, "Counter": "Arthur", "Image_Url": "https://api.dicebear.com/7.x/bottts/svg?seed=Mulan"}
 ])
 
 # --- SIDEBAR NAV MATRIX ---
-st.sidebar.markdown("<h2 style='text-align: center; color: #38bdf8;'>🏆 PRO MATRIX v2.6</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("<h2 style='text-align: center; color: #38bdf8;'>🏆 COACH SHINVONN DASHBOARD v2.6</h2>", unsafe_allow_html=True)
 panel = st.sidebar.radio("MANAGEMENT HUBS:", [
     "📈 Tactical Overview", 
     "🏆 Meta Heroes", 
